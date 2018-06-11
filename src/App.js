@@ -143,18 +143,18 @@ const routes = [
   }
 ];
 
-const RouteWithSubRoutes = route => (
-  <Route
-    // key={index}
-    path={route.path}
-    exact={route.exact}
-    component={route.main}
-    render={props => (
-      // pass the sub-routes down to keep nesting
-      <route.main {...props} routes={route.routes} />
-    )}
-  />
-);
+// const RouteWithSubRoutes = route => (
+//   <Route
+//     // key={index}
+//     path={route.path}
+//     exact={route.exact}
+//     component={route.main}
+//     render={props => (
+//       // pass the sub-routes down to keep nesting
+//       <route.main {...props} routes={route.routes} />
+//     )}
+//   />
+// );
 
 const IplNavTree = () => (
   <Router>
@@ -193,13 +193,13 @@ const IplNavTree = () => (
 
       <div style={{ flex: 1, padding: "2em" }}>
         {routes.map((route, index) => (
-          // <Route
-          //   key={index}
-          //   path={route.path}
-          //   exact={route.exact}
-          //   component={route.main}
-          // />
-          <RouteWithSubRoutes key={index} {...route} />
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.main}
+          />
+          // <RouteWithSubRoutes key={index} {...route} />
         ))}
       </div>
     </div>
@@ -207,82 +207,3 @@ const IplNavTree = () => (
 );
 
 export default IplNavTree;
-
-
-// ======================================================
-// const Main = () => <h2>Main</h2>;
-
-// const Sandwiches = () => <h2>Sandwiches</h2>;
-
-// const Tacos = ({ routes }) => (
-//   <div>
-//     <h2>Tacos</h2>
-//     <ul>
-//       <li>
-//         <Link to="/tacos/bus">Bus</Link>
-//       </li>
-//       <li>
-//         <Link to="/tacos/cart">Cart</Link>
-//       </li>
-//     </ul>
-
-//     {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
-//   </div>
-// );
-
-// const Bus = () => <h3>Bus</h3>;
-// const Cart = () => <h3>Cart</h3>;
-
-// ////////////////////////////////////////////////////////////
-// // then our route config
-// const routes = [
-//   {
-//     path: "/sandwiches",
-//     component: Sandwiches
-//   },
-//   {
-//     path: "/tacos",
-//     component: Tacos,
-//     routes: [
-//       {
-//         path: "/tacos/bus",
-//         component: Bus
-//       },
-//       {
-//         path: "/tacos/cart",
-//         component: Cart
-//       }
-//     ]
-//   }
-// ];
-
-// // wrap <Route> and use this everywhere instead, then when
-// // sub routes are added to any route it'll work
-// const RouteWithSubRoutes = route => (
-//   <Route
-//     path={route.path}
-//     render={props => (
-//       // pass the sub-routes down to keep nesting
-//       <route.component {...props} routes={route.routes} />
-//     )}
-//   />
-// );
-
-// const RouteConfigExample = () => (
-//   <Router>
-//     <div>
-//       <ul>
-//         <li>
-//           <Link to="/tacos">Tacos</Link>
-//         </li>
-//         <li>
-//           <Link to="/sandwiches">Sandwiches</Link>
-//         </li>
-//       </ul>
-
-//       {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
-//     </div>
-//   </Router>
-// );
-
-// export default RouteConfigExample;
