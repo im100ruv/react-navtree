@@ -44,48 +44,46 @@ const routes = [
           <p>Here you would get the list of all matches.</p>
         </div>
       )
-    },
-    routes: [
-      {
-        path: "/matches/mat-by-season",
-        exact: true,
-        main: () => {
-          return (
-            <div>
-              <h2>Matches</h2>
-              <h4>IPL Match Analysis per seasons</h4>
-              <p>Here you would get the list of matches per season.</p>
-            </div>
-          )
-        }
-      },
-      {
-        path: "/matches/won-stack",
-        exact: true,
-        main: () => {
-          return (
-            <div>
-              <h2>Matches</h2>
-              <h4>IPL Match Win Analysis per team across seasons</h4>
-              <p>Here you would get the list of matches won by teams per season.</p>
-            </div>
-          )
-        }
-      },
-      {
-        path: "/matches/extra-runs",
-        exact: true,
-        main: () => {
-          return (
-            <div>
-              <h2>Matches</h2>
-              <h4>IPL Team Analysis for extra runs</h4>
-              <p>Here you would get extra runs by teams in a year.</p>
-            </div>
-          )
-        }
-      }
-    ]
+    }
+  },
+  {
+    path: "/matches/mat-by-season",
+    exact: true,
+    main: () => {
+      return (
+        <div>
+          <h2>Matches</h2>
+          <h4>IPL Match Analysis per seasons</h4>
+          <p>Here you would get the list of matches per season.</p>
+        </div>
+      )
+    }
+  },
+  {
+    path: "/matches/won-stack",
+    exact: true,
+    main: () => {
+      return (
+        <div>
+          <h2>Matches</h2>
+          <h4>IPL Match Win Analysis per team across seasons</h4>
+          <p>Here you would get the list of matches won by teams per season.</p>
+        </div>
+      )
+    }
+  },
+  {
+    path: "/matches/extra-runs",
+    exact: true,
+    main: () => {
+      return (
+        <div>
+          <h2>Matches</h2>
+          <h4>IPL Team Analysis for extra runs</h4>
+          <p>Here you would get extra runs by teams in a year.</p>
+        </div>
+      )
+    }
   },
   {
     path: "/players",
@@ -111,50 +109,35 @@ const routes = [
           <p>Here you would get the list of teams and their players.</p>
         </div>
       )
-    },
-    routes: [
-      {
-        path: "/players/bowler-economy",
-        exact: true,
-        main: () => {
-          return (
-            <div>
-              <h2>Players</h2>
-              <h4>IPL Player Analysis | Bowler Economy</h4>
-              <p>Here you would get the list of top economical bowlers.</p>
-            </div>
-          )
-        }
-      },
-      {
-        path: "/players/bat-high",
-        exact: true,
-        main: () => {
-          return (
-            <div>
-              <h2>Players</h2>
-              <h4>IPL Player Analysis | Highest Individual Scores</h4>
-              <p>Here you would get the list of highest individual scores by batsmen.</p>
-            </div>
-          )
-        }
-      }
-    ]
+    }
+  },
+  {
+    path: "/players/bowler-economy",
+    exact: true,
+    main: () => {
+      return (
+        <div>
+          <h2>Players</h2>
+          <h4>IPL Player Analysis | Bowler Economy</h4>
+          <p>Here you would get the list of top economical bowlers.</p>
+        </div>
+      )
+    }
+  },
+  {
+    path: "/players/bat-high",
+    exact: true,
+    main: () => {
+      return (
+        <div>
+          <h2>Players</h2>
+          <h4>IPL Player Analysis | Highest Individual Scores</h4>
+          <p>Here you would get the list of highest individual scores by batsmen.</p>
+        </div>
+      )
+    }
   }
 ];
-
-// const RouteWithSubRoutes = route => (
-//   <Route
-//     // key={index}
-//     path={route.path}
-//     exact={route.exact}
-//     component={route.main}
-//     render={props => (
-//       // pass the sub-routes down to keep nesting
-//       <route.main {...props} routes={route.routes} />
-//     )}
-//   />
-// );
 
 const IplNavTree = () => (
   <Router>
@@ -182,10 +165,10 @@ const IplNavTree = () => (
           <li>
             <Link to="/players" style={{ textDecoration: 'none' }}>Players</Link>
             <Route
-              key="2"
-              path={routes[2].path}
-              exact={routes[2].exact}
-              component={routes[2].sidebar}
+              key="5"
+              path={routes[5].path}
+              exact={routes[5].exact}
+              component={routes[5].sidebar}
             />
           </li>
         </ul>
@@ -199,7 +182,6 @@ const IplNavTree = () => (
             exact={route.exact}
             component={route.main}
           />
-          // <RouteWithSubRoutes key={index} {...route} />
         ))}
       </div>
     </div>
