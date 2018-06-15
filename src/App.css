@@ -1,0 +1,13 @@
+ul {
+  list-style-type: none
+}
+
+li {
+  padding-top: 0.5em; 
+  cursor: pointer;
+  color: #02028a;
+}
+
+.nolink {
+  cursor: default;
+}
