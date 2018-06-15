@@ -5,7 +5,8 @@ import Years from './components/Years';
 class App extends React.Component {
   state = {
     teamNames: undefined,
-    active: undefined
+    active: undefined,
+    childActive: {}
   }
 
   fetchJsonData = async (query) => {
@@ -24,6 +25,12 @@ class App extends React.Component {
         active: i
       })
     }
+  }
+
+  storeChildActive = obj => {
+    this.setState({
+      childActive: obj
+    })
   }
 
   componentWillMount() {
@@ -47,7 +54,7 @@ class App extends React.Component {
             >
               {name} ({abbr})
             </li>
-            {this.state.active === i ? <Years key={`${i}y`} shortTeam={abbr} fetchJsonData={this.fetchJsonData} /> : ""}
+            {this.state.active === i ? <Years childActive={this.state.childActive} shortTeam={abbr} fetchJsonData={this.fetchJsonData} storeChildActive={this.storeChildActive} /> : ""}
           </React.Fragment>
         );
       })

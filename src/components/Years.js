@@ -5,17 +5,21 @@ export default class Years extends React.Component {
   state = {
     years: undefined,
     wins: undefined,
-    active: undefined
+    active: {}
   }
 
-  getYearWins = (i) => {
-    if (this.state.active === i) {
+  getYearWins = (shortTeam, i) => {
+    if (this.state.active[shortTeam] === i) {
+      let newActive = this.state.active
+      newActive[shortTeam] = undefined
       this.setState({
-        active: undefined
+        active: newActive
       })
     } else {
+      let newActive = this.state.active
+      newActive[shortTeam] = i
       this.setState({
-        active: i
+        active: newActive
       })
     }
   }
@@ -24,9 +28,14 @@ export default class Years extends React.Component {
     this.props.fetchJsonData(`/api/teams/${this.props.shortTeam}`).then(teamYearWins => {
       this.setState({
         years: Object.keys(Object.values(teamYearWins)[0]),
-        wins: Object.values(Object.values(teamYearWins)[0])
+        wins: Object.values(Object.values(teamYearWins)[0]),
+        active: this.props.childActive
       })
     });
+  }
+
+  componentWillUnmount(){
+    this.props.storeChildActive(this.state.active)
   }
 
   render() {
@@ -37,11 +46,11 @@ export default class Years extends React.Component {
           <React.Fragment>
             <li
               key={i}
-              onClick={this.getYearWins.bind(this, i)}
+              onClick={this.getYearWins.bind(this, this.props.shortTeam, i)}
             >
-              {year} 
+              {year}
             </li>
-            {this.state.active === i ? <Wins won={this.state.wins[i]} /> : ""}
+            {this.state.active[this.props.shortTeam] === i ? <Wins won={this.state.wins[i]} /> : ""}
           </React.Fragment>
         );
       })
@@ -57,3 +66,18 @@ export default class Years extends React.Component {
     )
   }
 }
+
+// let teams = Object.keys(this.state.teamNames).map((name, i) => {
+//   let abbr = name.match(/[A-Z]/g).join('')
+//   return (
+//     <React.Fragment>
+//       <li
+//         key={i}
+//         onClick={this.getYearWins.bind(this, abbr, name)}
+//       >
+//         {name} ({abbr})
+//       </li>
+//       {this.state.teamNames[name] ? <Years key={`${i}y`} /> : ""}
+//     </React.Fragment>
+//   );
+// })
